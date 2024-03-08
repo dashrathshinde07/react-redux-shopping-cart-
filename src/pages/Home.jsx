@@ -10,39 +10,37 @@ const Home = () => {
   async function fetchProductData() {
     setLoading(true);
 
-    try{
+    try {
       const res = await fetch(API_URL);
       const data = await res.json();
 
       setPosts(data);
-    }
-    catch(error) {
+    } catch (error) {
       console.log("Error aagya ji");
       setPosts([]);
     }
     setLoading(false);
   }
 
-  useEffect( () => {
+  useEffect(() => {
     fetchProductData();
-  },[])
+  }, []);
 
   return (
     <div>
-      {
-        loading ? <Spinner />  :
-        posts.length > 0 ? 
-        (<div>
-          {
-            posts.map( (post) => (
-            <Product key = {post.id} post={post}/>
-          ) )
-          }
-        </div>) :
+      {loading ? (
+        <Spinner />
+      ) : posts.length > 0 ? (
+        <div>
+          {posts.map((post) => (
+            <Product key={post.id} post={post} />
+          ))}
+        </div>
+      ) : (
         <div>
           <p>No Data Found</p>
-        </div> 
-      }
+        </div>
+      )}
     </div>
   );
 };
