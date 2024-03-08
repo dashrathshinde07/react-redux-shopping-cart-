@@ -17,12 +17,12 @@ const Product = ({ post }) => {
     toast.error("Item Removed from Cart");
   };
   return (
-    <div>
+    <div className="flex flex-col items-center justify-between">
       <div>
         <p>{post.title}</p>
       </div>
       <div>
-        <p>{post.description}</p>
+        <p>{post.description.split(" ").slice(0,10).join(" ") + "..."}</p>
       </div>
       <div>
         <img src={post.image} />
